@@ -3,7 +3,7 @@ services:
   web:
     build: ./app
     image: 777123362112.dkr.ecr.us-west-1.amazonaws.com/workshop2:workshop2_web # Task 5 set up Django app in deployment 02APR22 WC
-    command: gunicorn nc_tutorials.wsgi:application --bind 0.0.0.0:8080
+    command: gunicorn nc_tutorials.wsgi:application --bind 0.0.0.0:8080 # FIXED!!
     volumes:
       - ./app/:/usr/src/app/
       - static_volume:/usr/src/app/static
@@ -17,7 +17,7 @@ services:
       - DB_PORT=5432
       - DATABASE=postgres
       - VIRTUAL_HOST=ec2-50-18-35-185.us-west-1.compute.amazonaws.com # EC2 Instance Task 5 for RDS DB 02APR22 WC
-      - VIRTUAL_PORT=8000
+      - VIRTUAL_PORT=8080
   nginx:
     build: ./nginx
     image: 777123362112.dkr.ecr.us-west-1.amazonaws.com/workshop2:workshop2_nginx # Task 5 set up Django app in deployment 02APR22 WC
@@ -26,7 +26,7 @@ services:
     ports:
       # - 8000:80
       # - 8001:80
-      - 8080:80
+      - 8080:80 # only one port should be running, ran into "Recreating workshop2_nginx_1 ... error" 
     depends_on:
       - web
 volumes:
