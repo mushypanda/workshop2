@@ -17,7 +17,7 @@ services:
       - DB_PORT=5432
       - DATABASE=postgres
       - VIRTUAL_HOST=ec2-50-18-35-185.us-west-1.compute.amazonaws.com # EC2 Instance Task 5 for RDS DB 02APR22 WC
-      - VIRTUAL_PORT=8080
+      - VIRTUAL_PORT=8000
   nginx:
     build: ./nginx
     image: 777123362112.dkr.ecr.us-west-1.amazonaws.com/workshop2:workshop2_nginx # Task 5 set up Django app in deployment 02APR22 WC
